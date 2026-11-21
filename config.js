@@ -28,11 +28,11 @@ window.BDAY_CONFIG = {
         "images/anh6.jpg"
     ],
     notes: [
+        "Chúc mừng sinh nhật chị iu",
         "Hãy luôn tự tin và tỏa sáng nhé!",
         "Chúc chị có một sinh nhật thật vui vẻ ❤️",
         "Có tuổi rồi lấy chống thôi:>",
         "Lấy chồng giàu đừng quên em nhé",
-        "Hãy luôn sống hạnh phúc nha",
-        "Cạn ngôn rồi hehe"
+        "Hãy luôn sống hạnh phúc nha"
     ]
 };
