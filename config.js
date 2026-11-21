@@ -3,7 +3,10 @@
  * Ảnh: đường dẫn tương đối từ index.html, ví dụ images/anh1.jpg.
  * Có thể để photos: [] để không dùng ảnh mặc định.
  */
+
 window.BDAY_CONFIG = {
+    // Đường dẫn tới file nhạc (tương đối với index.html) hoặc URL. Để "" nếu không dùng nhạc.
+    music: "Happy Birthday (Piano Version).mp3",
     title: "Chúc mừng sinh nhật nhéee",
     texts: [
         "Sinh nhật vui vẻ nhé ❤️",
@@ -14,6 +17,8 @@ window.BDAY_CONFIG = {
     ],
     emoji: "",
     color: "#FFB8B8",
+    // Đường dẫn tới file nhạc (tương đối với index.html) hoặc URL. Để "" nếu không dùng nhạc.
+    music: "Happy Birthday (Piano Version).mp3",
     photos: [
         "images/anh1.jpg",
         "images/anh2.jpg",

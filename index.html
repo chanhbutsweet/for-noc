@@ -576,6 +576,7 @@
     </style>
 </head>
 <body>
+<audio id="bgMusic" loop preload="auto"></audio>
 <canvas id="cv"></canvas>
 <div id="intro" role="dialog" aria-label="Mở khóa lời chúc">
     <div id="ls" role="button" tabindex="0" aria-label="Chạm để mở khóa">
@@ -631,11 +632,24 @@
         texts: ["Sinh nhật vui vẻ nhé❤️", "Tuổi mới thật hạnh phúc❤️", "Happy Birthday❤️","Chúc mừng sinh nhật❤️","Già rồi lấy chồng đi!!!"],
         emoji: "",
         color: "#FFB8B8",
+        music: "",
         photos: ["images/anh1.jpg","images/anh2.jpg","images/anh3.jpg","images/anh4.jpg","images/anh5.jpg","images/anh6.jpg"],
         notes: ["Mỗi khoảnh khắc bên em đều là kỷ niệm đẹp", "Nụ cười của em là điều tuyệt nhất", "Cùng nhau đi qua thật nhiều ngày vui", "Em luôn làm mọi thứ trở nên đặc biệt", "Chúc em một tuổi mới thật rực rỡ", "Mong mọi điều tốt đẹp sẽ đến với em"]
     };
     const KEY = "bday-cfg-v1";
     let cfg = loadCfg();
+
+    const bgMusic = document.getElementById("bgMusic");
+    bgMusic.src = cfg.music || "";
+    function playMusic() {
+        if (!cfg.music) return;
+        const playback = bgMusic.play();
+        if (playback && typeof playback.catch === "function") playback.catch(() => {});
+    }
+    // Trình duyệt có thể chặn autoplay có tiếng; thử phát lại khi người xem tương tác.
+    playMusic();
+    document.addEventListener("pointerdown", playMusic, {once: true});
+    document.addEventListener("keydown", playMusic, {once: true});
 
     function loadCfg() {
         // config.js là nguồn cấu hình chính để thay nội dung trực tiếp trong một file.
@@ -1322,6 +1336,7 @@ if (!cfg.photos.length) {
         async function run() {
             if (started) return;
             started = true;
+            playMusic();
             ls.classList.add("open");
             await sleep(700);
             if (skipped) return;
