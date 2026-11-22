@@ -614,7 +614,7 @@
         <button class="btn" id="addBtn" type="button">Tải ảnh lên</button>
         <input type="file" id="fFiles" accept="image/*" multiple hidden></div>
     <div id="thumbs"></div>
-    <p class="note" id="phNote">Đang dùng ảnh mẫu. Tải ảnh của bạn lên để thay thế (tối đa 12 ảnh).</p>
+    <p class="note" id="phNote">Đang dùng ảnh mẫu. Tải ảnh của bạn lên để thay thế (tối đa 10 ảnh).</p>
     <label for="fNotes">Lời nhắn dưới mỗi ảnh (mỗi dòng một ảnh, theo thứ tự)</label>
     <textarea id="fNotes"></textarea>
     <p class="note">Nội dung được lưu ngay trên trình duyệt này.</p>
@@ -1200,7 +1200,7 @@
     };
     $("addBtn").onclick = () => fF.click();
     fF.onchange = () => {
-        [...fF.files].slice(0, 12 - cfg.photos.length).forEach(f => {
+        [...fF.files].slice(0, 10 - cfg.photos.length).forEach(f => {
             const r = new FileReader();
             r.onload = () => {
                 const im = new Image();
@@ -1209,7 +1209,7 @@
                     c.width = c.height = S;
                     const m = Math.min(im.width, im.height);
                     c.getContext("2d").drawImage(im, (im.width - m) / 2, (im.height - m) / 2, m, m, 0, 0, S, S);
-                    if (cfg.photos.length < 12) {
+                    if (cfg.photos.length < 10) {
                         cfg.photos.push(c.toDataURL("image/jpeg", .82));
                         thumbs();
                         buildCubes();
@@ -1243,14 +1243,7 @@
         $("open").style.display = ""
     };
 
-    const defaultPhotos = [
-  "images/anh1.jpg",
-  "images/anh2.jpg",
-  "images/anh3.jpg",
-  "images/anh4.jpg",
-  "images/anh5.jpg",
-  "images/anh6.jpg"
-];
+    const defaultPhotos = [];
 
 if (!cfg.photos.length) {
   cfg.photos = defaultPhotos;
@@ -1273,7 +1266,7 @@ if (!cfg.photos.length) {
         let done = false, skipped = false, started = false;
         rad = 19;
         ttl.textContent = cfg.title;
-        const list = (cfg.photos.length ? cfg.photos.slice(0, 8) : [0, 1, 2, 3, 4, 5]).map(s => typeof s === "number" ? texFor(s).image.toDataURL("image/jpeg", .85) : s);
+        const list = (cfg.photos.length ? cfg.photos.slice(0, 10) : [0, 1, 2, 3, 4, 5]).map(s => typeof s === "number" ? texFor(s).image.toDataURL("image/jpeg", .85) : s);
 
         function time() {
             const d = new Date();
